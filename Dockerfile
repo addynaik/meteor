@@ -5,10 +5,13 @@ RUN apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y build-essential \
     curl \
+    locales \
     procps \
     git && \
   apt-get remove -y man && \
   rm -rf /var/lib/apt/lists/*
+
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8 
 
 RUN groupadd -r meteor && useradd -ms /bin/bash -g meteor meteor 
 USER meteor
